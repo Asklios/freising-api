@@ -1,0 +1,5 @@
+/venv
+/.idea
+
+database.env
+config.ini

@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  database:
+    image: postgres
+    container_name: fs_database
+    restart: unless-stopped
+    volumes:
+      - fs_database:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+    env_file:
+        - database.env
+    networks:
+      - backend
+
+  newscollector:
+    build: fs-api
+    image: fs-api:latest
+    restart: unless-stopped
+    container_name: fs_api
+    networks:
+      - backend
+    depends_on:
+      - database
+
+volumes:
+  fs_database:
+    external: true
+
+networks:
+  backend:
+    driver: bridge
