@@ -19,7 +19,8 @@ def print_db_version():
         print('[DB-INFO]: ' + cur.fetchone()[0])
         conn.close()
         return True
-    except InterfaceError:
+    except InterfaceError as e:
+        print(f'[ERROR] {e.args[0]}')
         return False
 
 

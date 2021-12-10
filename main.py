@@ -24,6 +24,11 @@ class Main:
 
 
 class Schedule:
+    # check db connection on startup
+    if not pg_helper.print_db_version():
+        print('[EXIT] No connection to database.')
+        exit()
+
     print("Initiating schedule at " + str(datetime.now()))
     schedule.every().day.at("10:00").do(Main, 'Starting new run at 12:00')
 
