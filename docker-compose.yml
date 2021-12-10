@@ -14,7 +14,7 @@ services:
     networks:
       - backend
 
-  newscollector:
+  fs-api:
     build: fs-api
     image: fs-api:latest
     restart: unless-stopped
